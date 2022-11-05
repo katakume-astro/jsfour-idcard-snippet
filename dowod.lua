@@ -1,3 +1,16 @@
+--[[
+    jsfour id card converted to ox_lib by katakume from astro-development.
+]]
+
+ESX = nil
+
+Citizen.CreateThread(function()
+    while ESX == nil do
+        TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
+        Citizen.Wait(0)
+    end
+end)
+
 function dowody()
     local player, distance = ESX.Game.GetClosestPlayer()
     lib.registerContext({
