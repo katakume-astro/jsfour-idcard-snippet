@@ -1,18 +1,3 @@
---[[
-    jsfour id card converted to ox_lib by katakume from astro-development.
-]]
-
-ESX = nil
-
-Citizen.CreateThread(function()
-    while ESX == nil do
-        TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
-        Citizen.Wait(0)
-    end
-end)
-
--- part 1
-
 function dowody()
     local player, distance = ESX.Game.GetClosestPlayer()
     lib.registerContext({
@@ -38,7 +23,6 @@ function dowody()
                     end
                   end
             },
-        },
         {
             title = 'Pokaz prawo jazdy',
             description = 'Pokaz prawo jazdy osobie',
@@ -61,6 +45,7 @@ function dowody()
                 end
               end
         },
+    }
     })
     lib.showContext('context:dokumenty')
 end
@@ -79,8 +64,7 @@ function swojedokumenty()
                     TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()))
                   end
             },
-        },
-        {
+            {
             title = 'Zobacz swoje prawo jazdy',
             description = 'Spojrz jaki masz piekne prawo jazdy!',
             onSelect = function()
@@ -94,10 +78,11 @@ function swojedokumenty()
                     TriggerServerEvent('jsfour-idcard:open', GetPlayerServerId(PlayerId()), GetPlayerServerId(PlayerId()), 'weapon')
               end
         },
+    }
     })
     lib.showContext('context:dokumenty2')
 end
 
 RegisterCommand("dokumenty", function()
     dowody()
-end, false)
+end)
